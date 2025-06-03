@@ -7,12 +7,20 @@ use App\Models\AboutLicense;
 use App\Models\ContactUs;
 use App\Models\Customer;
 use App\Models\Gallery;
+use App\Models\Trading;
+
 use App\Models\MainSlider;
 use App\Models\MessageFromCeo;
 use App\Models\Newsletter;
 use App\Models\NewsVideo;
+use App\Models\Project;
+use App\Models\TradingVision;
+
 use App\Models\Quote;
+use App\Models\Service;
 use App\Models\TeamMember;
+use App\Models\TechnologyAbout;
+use App\Models\TechnologyVision;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +32,26 @@ class HomeController extends Controller
         $members = TeamMember::take(4)->get();
 
         return view('home', compact('members' , 'ceo' , 'about'));
+    }
+    public function trading(){
+        $trading = Trading::first();
+        $members = TeamMember::take(4)->get();
+        $visions = TradingVision::all();
+        $services = Service::all();
+        $partners = Customer::all();
+
+        return view('trading', compact('trading','members','visions','services','partners'));
+    }
+    public function technology(){
+        $aboutTech = TechnologyAbout::first();
+        $members = TeamMember::take(4)->get();
+        $visions = TechnologyVision::all();
+        $services = Service::all();
+        $partners = Customer::all();
+        $projects = Project::all();
+
+
+        return view('technology', compact('aboutTech','members','visions','services','partners','projects'));
     }
     public function aboutus(){
         $about = About::first();

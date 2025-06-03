@@ -2,48 +2,55 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CustomerResource\Pages;
-use App\Filament\Resources\CustomerResource\RelationManagers;
-use App\Models\Customer;
+use App\Filament\Resources\TradingVisionResource\Pages;
+use App\Filament\Resources\TradingVisionResource\RelationManagers;
+use App\Models\TradingVision;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
-class CustomerResource extends Resource
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+class TradingVisionResource extends Resource
 {
     protected static ?string $navigationGroup = 'Trading';
 
-    protected static ?string $model = Customer::class;
+    protected static ?string $model = TradingVision::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
-            TextInput::make('title')
+            ->schema([
+                TextInput::make('title')
                 ->required()
                 ->maxLength(255),
-            FileUpload::make('image')   
-                ->required()
-        ]);
+
+            Textarea::make('description')
+                ->required(),
+
+            FileUpload::make('image')
+                ->directory('trading-vision')
+                ->image()
+                ->imagePreviewHeight('100')
+                ->maxSize(2048), // 2MB
+            ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                ImageColumn::make('image')  // Displays the image field
-                ->label('Image')
-                ->disk('public')  // Ensure the image is served from the public disk
-                ->size(100)  // Adjust the size of the image displayed in the table
+                TextColumn::make('title')->searchable(),
+                TextColumn::make('description')->limit(50),
+                ImageColumn::make('image')->circular(),
             ])
             ->filters([
                 //
@@ -68,18 +75,9 @@ class CustomerResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCustomers::route('/'),
-            'create' => Pages\CreateCustomer::route('/create'),
-            'edit' => Pages\EditCustomer::route('/{record}/edit'),
+            'index' => Pages\ListTradingVisions::route('/'),
+            'create' => Pages\CreateTradingVision::route('/create'),
+            'edit' => Pages\EditTradingVision::route('/{record}/edit'),
         ];
-    }
-    public static function getLabel(): string
-    {
-        return 'Partner';
-    }
-
-    public static function getPluralLabel(): string
-    {
-        return 'Partners';
     }
 }

@@ -191,38 +191,116 @@
 </nav>
 
 <section id="about_us"class="main-container py-5">
-  <div class="row align-items-center mb-5">
-    <div class="col-md-7">
-      <h2 class="section-title">Alawadilah Group</h2>
-      {{-- <p style="padding: 10px; line-height: 1.9; text-align: justify; font-size: 20px; color: #626272;">{{$about}}</p> --}}
-      <div class="about-description">
-         {!! $about->description !!}
-     </div>
-   </div>
-    <div class="col-md-5 text-center">
+  <div class="row align-items-center ">
+  
+    {{-- <div class="col-md-5 text-center">
       <img src="logo.png" alt="Alawadilah Logo" class="logo-img" style="width: 100%;"/>
-    </div>
+    </div> --}}
+  </div>
+
+  <div class="col-12 text-center">
+    <h2 class="section-title sw-font-size-5xl sw-text-color-4e7da2 sw-font-family-default sw-font-weight-default sw-padding-top-none sw-padding-bottom-4xs sw-letter-spacing-normal sw-line-height-normal " style="    font-weight: 600;
+    color: #4e7da2;
+    font-size: -webkit-xxx-large;">About <br>
+      {{$aboutTech->title}}</h2>
+    <p class="about-description" style="margin-bottom: 1rem;
+    padding: 10px;
+    line-height: 1.9;
+    text-align: center;
+    font-size: 20px;
+    color: rgb(98, 98, 114);">
+      {!! $aboutTech->description !!}
+    </p>
   </div>
 </section>
 
-<section class="main-container text-center py-4">
-  <h4 class="fw-bold section-title">Message From CEO</h4>
-  <p class="text-danger">{!! nl2br(e($ceo->message)) !!}</p>
-  <img src="{{ Storage::url($ceo->image) }}" alt="CEO" class="ceo-img my-3"/>
-  <p class="fw-bold">{{ $ceo->ceo_name }}<br/><small>CEO</small></p>
+{{-- <section>
+  <div class="main-container">
+    @foreach ($visions as $vision)
+        <div class="row mb-5">
+          <div class="col-md-4">
+            <h2 class="section-title">{{ $vision->title }}</h2>
+            <p style="color: red;
+    text-align: justify;
+    line-height: 2;    font-family: Poppins;
+    font-size: 21px;">{{ $vision->description }}</p>
+          </div>
+          <div class="col-md-4 offset-4">
+            @if ($vision->image)
+            <img stye="height: 100%;"src="{{ asset('storage/' . $vision->image) }}" class="card-img-top" alt="{{ $vision->title }}">
+        @endif
+          </div>
+        </div>
+    @endforeach
+</div>
+</section> --}}
+<section  style="background: #ffffff; padding-top:45px;" >
+    <div class="main-container">
+      @foreach ($visions as $vision)
+          <div class="row mb-5">
+            <div class="col-md-4">
+              <h2 class="section-title">{{ $vision->title }}</h2>
+              <p style="color:rgb(98, 98, 114);;
+      text-align: justify;
+      line-height: 2;    font-family: Poppins;
+      font-size: 21px;">{{ $vision->description }}</p>
+            </div>
+            <div class="col-md-4 offset-4">
+              @if ($vision->image)
+              <img stye="height: 100%;"src="{{ asset('storage/' . $vision->image) }}" class="card-img-top" alt="{{ $vision->title }}">
+          @endif
+            </div>
+          </div>
+      @endforeach
+  </div>
+  </section>
+  <section  style="background: #ffffff;">
+<h1 class="section-title text-center py-5"> Our Services</h1>
+  <div class="main-container">
+    @foreach ($services as $service)
+        <div class="row mb-5">
+          <div class="col-md-4">
+            <h2 class="section-title">{{ $service->title }}</h2>
+            <p style="color:rgb(98, 98, 114);;
+    text-align: justify;
+    line-height: 2;    font-family: Poppins;
+    font-size: 21px;">{{ $service->description }}</p>
+          </div>
+          <div class="col-md-4 offset-4">
+            @if ($service->image)
+            <img stye="height: 100%;"src="{{ asset('storage/' . $service->image) }}" class="card-img-top" alt="{{ $service->title }}">
+        @endif
+          </div>
+        </div>
+    @endforeach
+</div>
 </section>
 
-<section id="our_group"class="main-container text-center py-4">
-  <h4 class="section-title" style="margin-bottom: 5%;">Our Group</h4>
-  <div class="d-flex flex-wrap justify-content-center gap-4">
-    <img src="group_1.png" alt="Group Logo 1" class="logo-img"/>
-    <img src="group_2.png" alt="Group Logo 2" class="logo-img"/>
-    <img src="point.png" alt="Group Logo 3" class="logo-img"/>
+<section  style="background: #ffffff;">
+  <h1 class="section-title text-center py-5"> Our Projects</h1>
+    <div class="main-container">
+      @foreach ($projects as $service)
+          <div class="row mb-5">
+            <div class="col-md-4">
+              <h2 class="section-title">{{ $service->title }}</h2>
+              <p style="color:rgb(98, 98, 114);;
+      text-align: justify;
+      line-height: 2;    font-family: Poppins;
+      font-size: 21px;">{{ $service->description }}</p>
+            </div>
+            <div class="col-md-4 offset-4">
+              @if ($service->image)
+              <img stye="height: 100%;"src="{{ asset('storage/' . $service->image) }}" class="card-img-top" alt="{{ $service->title }}">
+          @endif
+            </div>
+          </div>
+      @endforeach
   </div>
-</section>
+  </section>
+
 
 <section id="team"class="main-container text-center py-5">
-  <h4 class="section-title">The Team</h4>
+  <h2 class="section-title">The Team</h2>
   <p>Meet our small team that make these great products.</p>
   <div class="row justify-content-center">
    @foreach ($members as $member)
@@ -231,45 +309,29 @@
       <p class="mt-2">{{ $member->name }}<br/><small>{{ $member->title }}</small></p>
     </div>
    @endforeach
-    {{-- <div class="col-6 col-sm-4 col-md-3 mb-4">
-      <img src="team_1.jpeg" class="team-img" alt="Team 1"/>
-      <p class="mt-2">Adil A. Al-Samoum<br/><small>Head, Alawadilah Group</small></p>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 mb-4">
-      <img src="team_2.png" class="team-img" alt="Team 2"/>
-      <p class="mt-2">Fouad A. Al-Khurman<br/><small>Co-Founder, Trading</small></p>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 mb-4">
-      <img src="team_3.png" class="team-img" alt="Team 3"/>
-      <p class="mt-2">Wael M. Samoum<br/><small>Marketing Director</small></p>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 mb-4">
-      <img src="team_4.png" class="team-img" alt="Team 4"/>
-      <p class="mt-2">Wael Al-Mohani<br/><small>Vice Director</small></p> --}}
-    </div>
+       </div>
   </div>
 </section>
-
-<section id="contact_us"class="main-container py-4">
-   <h4 class="contact-title text-center">Contact Us</h4>
-   <div class="row justify-content-center">
-     <div class="col-12 col-md-6 col-lg-5">
-       <form action="{{ route('contactus') }}" method="post">
-         @csrf
-         <div class="mb-3">
-           <input type="text" class="form-control" id="yourName" name="name" placeholder="Your Name"/>
-         </div>
-         <div class="mb-3">
-           <input type="email" class="form-control" id="yourEmail" name="email" placeholder="Your Email Address"/>
-         </div>
-         <div class="mb-3">
-           <textarea class="form-control" id="yourMessage" placeholder="Your Message" name="message" rows="4"></textarea>
-         </div>
-         <button type="submit" class="btn btn-custom-blue w-100">Submit Inquiry</button>
-       </form>
-     </div>
-   </div>
- </section>
+<section style="
+    background: #ffffff; padding:30px;"id="partner1" class="partner1- sw-background-color-ffffff sw-padding-top-2xl sw-padding-bottom-2xl sw-border-top-style-none sw-border-top-width-xs sw-border-top-color-000000 sw-border-bottom-style-none sw-border-bottom-width-xs sw-border-bottom-color-000000 ">
+  <div class="main-container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 class="section-title">Our Partners</h2>
+      </div>
+    </div>
+    <div class="row d-flex align-items-center text-center">
+      @foreach ($partners as $partner)
+      <div class="col-md-4 text-center">
+        <!-- picture -->
+        <a href="{{ Storage::url($partner->image) }}" target="" class=" " rel="nofollow noreferrer noopener">
+          <img src="{{ Storage::url($partner->image)}}" style="height: 60%; width: 60%;" class="full-width">
+        </a>
+      </div>
+      @endforeach
+    </div>
+    </div>
+    </section>
 
 <footer>
   <div class="container main-container">
@@ -304,9 +366,9 @@
       <div class="col-6 col-md-3 footer-column">
         <h5>Our Group</h5>
         <ul>
-         <li><a href="{{route('trading')}}">Trading</a></li>
-         <li><a href="{{route('technology')}}">Technology</a></li>
-         <li><a href="https://pointgroup.biz/">Point</a></li>
+          <li><a href="{{route('trading')}}">Trading</a></li>
+          <li><a href="{{route('technology')}}">Technology</a></li>
+          <li><a href="https://pointgroup.biz/">Point</a></li>
         </ul>
       </div>
 

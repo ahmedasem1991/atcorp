@@ -18,6 +18,8 @@ use App\Http\Controllers\HomeController;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/trading', [HomeController::class, 'trading'])->name('trading');
+Route::get('/technology', [HomeController::class, 'technology'])->name('technology');
 
 Route::get('aboutus', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('services', [HomeController::class, 'services'])->name('services');
