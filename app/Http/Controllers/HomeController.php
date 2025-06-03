@@ -8,9 +8,11 @@ use App\Models\ContactUs;
 use App\Models\Customer;
 use App\Models\Gallery;
 use App\Models\MainSlider;
+use App\Models\MessageFromCeo;
 use App\Models\Newsletter;
 use App\Models\NewsVideo;
 use App\Models\Quote;
+use App\Models\TeamMember;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,8 +20,10 @@ class HomeController extends Controller
     //home view 
     public function home(){
         $about = About::first();
-        
-        return view('home', compact('about'));
+        $ceo = MessageFromCeo::first();
+        $members = TeamMember::take(4)->get();
+
+        return view('home', compact('members' , 'ceo' , 'about'));
     }
     public function aboutus(){
         $about = About::first();

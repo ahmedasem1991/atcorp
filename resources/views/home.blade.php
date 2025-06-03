@@ -207,9 +207,9 @@
 
 <section class="main-container text-center py-4">
   <h4 class="fw-bold section-title">Message From CEO</h4>
-  <p class="text-danger">A visionary plan is a written document that describes in detail how a business...</p>
-  <img src="ceo_image.jpeg" alt="CEO" class="ceo-img my-3"/>
-  <p class="fw-bold">Adil A. Al-Samoum<br/><small>CEO</small></p>
+  <p class="text-danger">{!! nl2br(e($ceo->message)) !!}</p>
+  <img src="{{ Storage::url($ceo->image) }}" alt="CEO" class="ceo-img my-3"/>
+  <p class="fw-bold">{{ $ceo->ceo_name }}<br/><small>CEO</small></p>
 </section>
 
 <section id="our_group"class="main-container text-center py-4">
@@ -225,7 +225,13 @@
   <h4 class="section-title">The Team</h4>
   <p>Meet our small team that make these great products.</p>
   <div class="row justify-content-center">
-    <div class="col-6 col-sm-4 col-md-3 mb-4">
+   @foreach ($members as $member)
+   <div class="col-6 col-sm-4 col-md-3 mb-4">
+      <img src="{{ Storage::url($member->image) }}" class="team-img" alt="Team 1"/>
+      <p class="mt-2">{{ $member->name }}<br/><small>{{ $member->title }}</small></p>
+    </div>
+   @endforeach
+    {{-- <div class="col-6 col-sm-4 col-md-3 mb-4">
       <img src="team_1.jpeg" class="team-img" alt="Team 1"/>
       <p class="mt-2">Adil A. Al-Samoum<br/><small>Head, Alawadilah Group</small></p>
     </div>
@@ -239,7 +245,7 @@
     </div>
     <div class="col-6 col-sm-4 col-md-3 mb-4">
       <img src="team_4.png" class="team-img" alt="Team 4"/>
-      <p class="mt-2">Wael Al-Mohani<br/><small>Vice Director</small></p>
+      <p class="mt-2">Wael Al-Mohani<br/><small>Vice Director</small></p> --}}
     </div>
   </div>
 </section>
@@ -248,15 +254,16 @@
    <h4 class="contact-title text-center">Contact Us</h4>
    <div class="row justify-content-center">
      <div class="col-12 col-md-6 col-lg-5">
-       <form>
+       <form action="{{ route('contactus') }}" method="post">
+         @csrf
          <div class="mb-3">
-           <input type="text" class="form-control" id="yourName" placeholder="Your Name"/>
+           <input type="text" class="form-control" id="yourName" name="name" placeholder="Your Name"/>
          </div>
          <div class="mb-3">
-           <input type="email" class="form-control" id="yourEmail" placeholder="Your Email Address"/>
+           <input type="email" class="form-control" id="yourEmail" name="email" placeholder="Your Email Address"/>
          </div>
          <div class="mb-3">
-           <textarea class="form-control" id="yourMessage" placeholder="Your Message" rows="4"></textarea>
+           <textarea class="form-control" id="yourMessage" placeholder="Your Message" name="message" rows="4"></textarea>
          </div>
          <button type="submit" class="btn btn-custom-blue w-100">Submit Inquiry</button>
        </form>
