@@ -1,0 +1,15 @@
+ .navbar-nav .active>.nav-link, .navbar-nav .nav-link.active, .navbar-nav .nav-link.show, .navbar-nav .show>.nav-link {
+    color: rgb(34 210 121) !important;
+}
+.main-nave{
+    font-size: 17px;
+    color: black;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-right: 0px !important;
+    margin-left: 20px;
+}
+
+.main-nave:hover{
+    color: #22d279 !important;
+}

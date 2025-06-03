@@ -1,0 +1,112 @@
+/* Make sure carousel inner is correctly positioned */
+.carousel-inner {
+    display: flex;
+    position: relative;
+}
+
+/* Style the carousel indicators container */
+.carousel-indicators-wrapper {
+    position: absolute;
+    top: 0;
+    right: 20px;  /* Positioned closer to the carousel */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+/* Remove default horizontal indicators */
+.carousel-indicators {
+    list-style: none;
+    padding-left: 0;
+    top: 20% !important;
+    bottom: unset !important;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.carousel-indicators li{
+    background-color: unset !important;
+}
+/* Style each vertical indicator */
+.carousel-indicators li {
+    /* position: relative;
+    margin-bottom: 65px;  /* Increased space between vertical indicators */
+    /* cursor: pointer;
+    align-items: center;  /* Align title and indicator line horizontally */
+    text-indent: -50px !important; */ */
+}
+
+/* Style the vertical line indicator */
+.carousel-indicators li span {
+    /* margin-top: 15px !important;
+    display: block;
+    /* width: 4px; */
+    /* height: 50px;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin-right: 8px;
+    transition: background-color 0.3s ease; */ */
+}
+
+/* Active indicator (when the slide is active) */
+.carousel-indicators .active span {
+    background-color: #007bff;  /* Highlight active indicator with blue */
+}
+
+/* Title for each indicator */
+.carousel-indicators li .indicator-title {
+    /* color: #fff;
+    font-weight: bold;
+    font-size: 16px; */
+}
+
+/* Hover effect on the indicator */
+.carousel-indicators li:hover span {
+    background-color: #007bff;  /* Change color on hover */
+}
+
+/* Responsive: Adjust the layout for smaller screens */
+@media (max-width: 767px) {
+    .carousel-indicators-wrapper {
+        position: static;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .carousel-indicators li {
+        flex-direction: row;
+        margin-right: 15px;
+    }
+
+    .carousel-indicators li span {
+        width: 12px;  /* Slightly smaller vertical indicator for mobile */
+        height: 12px;
+        margin-right: 5px;
+    }
+
+    .carousel-indicators li .indicator-title {
+        display: none;  /* Hide titles on smaller screens */
+    }
+}
+.carouseltitles{
+    margin-bottom: 10px; 
+    border-right: 4px solid white; 
+    padding-right: 15px;
+    cursor: pointer;
+}
+.titlestable{
+    font-size: 18px;
+    z-index: 1000;
+    color: white;width: 140px; text-align: right; border-collapse: separate;
+}
+.carousel-indicators-wrapper .indic tr.active .carouseltitles {
+    color: #22d279 !important;
+    border-right: 4px solid #22d279 !important;
+}
